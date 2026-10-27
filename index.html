@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f6f0">
+  <title>MoodBite — Good food. Better mood.</title>
+  <meta name="description" content="Discover recipes that match your weather and your mood.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="india-foods.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="MoodBite home">
+        <span class="brand-icon" aria-hidden="true">✳</span>
+        <span>Mood<span>Bite</span></span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#discover">Discover</a>
+        <a href="#mood-section">Your mood</a>
+        <a href="#meme-section">Mood meme</a>
+      </nav>
+      <a class="header-cta" href="#discover">Find my bite <span>↗</span></a>
+    </header>
+
+    <main>
+      <section class="hero" id="discover">
+        <div class="hero-copy">
+          <div class="eyebrow"><span></span> A little sunshine for your plate</div>
+          <h1>Good food.<br><em>Better mood.</em></h1>
+          <p class="hero-text">Your day has a flavour. Find recipes that fit the weather, match your mood, and make an ordinary day feel special.</p>
+
+          <form id="city-form" class="city-form">
+            <label class="sr-only" for="city-input">Your city</label>
+            <span class="pin-icon" aria-hidden="true">⌖</span>
+            <input id="city-input" name="city" value="Ahmedabad" placeholder="Enter your city..." autocomplete="off" required>
+            <button id="find-button" type="submit">Find my vibe <span>→</span></button>
+          </form>
+          <p class="micro-note"><span>✦</span> Fresh inspiration, wherever you are</p>
+          <p class="status-message" id="status-message" role="status">Ready when you are — search a city to get started.</p>
+        </div>
+
+        <div class="hero-art" aria-label="Fresh food photography">
+          <div class="sun-disc"></div>
+          <div class="art-ring ring-a"></div><div class="art-ring ring-b"></div>
+          <div class="hero-photo">
+            <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=85" alt="A colourful bowl of fresh vegetables">
+          </div>
+          <div class="float-pill weather-pill"><span class="pill-emoji">☀️</span><span><b id="hero-weather-label">Made for today</b><small id="hero-weather-sub">Your kind of comfort</small></span></div>
+          <div class="float-pill mood-pill"><span class="smile-mark">☺</span><span><b>A feel-good pick</b><small>Picked just for you</small></span></div>
+          <div class="handwritten">eat<br>happy!</div>
+        </div>
+      </section>
+
+      <section class="weather-bar" aria-label="Current weather">
+        <div class="weather-summary">
+          <div class="weather-symbol" id="weather-symbol">☀️</div>
+          <div>
+            <div class="weather-kicker">TODAY IN <strong id="weather-city">AHMEDABAD</strong></div>
+            <div class="temperature-line"><strong id="temperature">—°</strong><span id="weather-condition">Weather appears here</span></div>
+          </div>
+        </div>
+        <div class="weather-separator"></div>
+        <div class="weather-advice"><span class="sparkle">✦</span><div><strong>A little nudge from the sky</strong><p id="weather-tip">Search your city to get a weather-inspired suggestion.</p></div></div>
+        <div class="weather-badge"><span class="status-dot"></span><span id="weather-status">Waiting for search</span></div>
+      </section>
+
+      <section class="mood-section" id="mood-section">
+        <div class="section-head">
+          <div><p class="section-eyebrow">CHECK IN WITH YOURSELF</p><h2>What's your <em>mood today?</em></h2></div>
+          <p class="section-aside">No wrong answers. Just good food.</p>
+        </div>
+        <div class="mood-grid" role="group" aria-label="Choose your mood">
+          <button class="mood-card active" type="button" data-mood="happy" aria-pressed="true"><span class="mood-emoji">☀️</span><strong>Happy</strong><small>Keep it bright</small><span class="check-mark">✓</span></button>
+          <button class="mood-card" type="button" data-mood="cozy" aria-pressed="false"><span class="mood-emoji">☕</span><strong>Cozy</strong><small>Comfort mode</small><span class="check-mark">✓</span></button>
+          <button class="mood-card" type="button" data-mood="tired" aria-pressed="false"><span class="mood-emoji">🌙</span><strong>Low energy</strong><small>Keep it easy</small><span class="check-mark">✓</span></button>
+          <button class="mood-card" type="button" data-mood="adventurous" aria-pressed="false"><span class="mood-emoji">🌶️</span><strong>Adventurous</strong><small>Surprise me</small><span class="check-mark">✓</span></button>
+        </div>
+      </section>
+
+      <section class="recipes-section" id="recipes-section">
+        <div class="section-head recipe-head">
+          <div><p class="section-eyebrow">YOUR MOOD, SERVED</p><h2>Today's feel-good <em>menu</em></h2></div>
+          <button class="refresh-button" id="refresh-button" type="button">Refresh ideas <span>↻</span></button>
+        </div>
+        <div class="recommendation-note" id="recommendation-note"><span>✦</span> Choose a city and mood — we'll find a bite to match.</div>
+        <div class="discovery-panel" aria-label="Recipe discovery filters">
+          <div class="filter-block">
+            <label for="food-type">Food preference</label>
+            <select id="food-type">
+              <option value="all">All foods</option>
+              <option value="vegetarian">Vegetarian (no egg, meat or fish)</option>
+              <option value="vegan">Vegan (no animal products)</option>
+              <option value="nonvegetarian">Non-vegetarian (meat, egg or seafood)</option>
+              <option value="egg">Contains egg</option>
+              <option value="seafood">Seafood (fish/shellfish)</option>
+            </select>
+          </div>
+          <form id="dish-search-form" class="dish-search-form">
+            <label for="dish-search">Search a dish</label>
+            <div class="dish-search-row"><input id="dish-search" type="search" placeholder="e.g. paneer, biryani, pasta" autocomplete="off"><button type="submit">Search dishes <span>→</span></button></div>
+          </form>
+        </div>
+        <div class="local-food-panel">
+          <div><p class="section-eyebrow">A TASTE OF YOUR CITY</p><h3 id="local-food-title">Explore local favourites</h3><p id="local-food-description">Choose a city above to see dishes associated with that place.</p></div>
+          <div class="local-food-chips" id="local-food-chips"><button type="button" class="food-chip" data-dish="Khaman Dhokla">Khaman Dhokla</button><button type="button" class="food-chip" data-dish="Fafda">Fafda</button><button type="button" class="food-chip" data-dish="Jalebi">Jalebi</button></div>
+        </div>
+        <div class="india-browser" aria-label="Browse Indian regional foods">
+          <div class="india-browser-heading"><strong>Explore India by region</strong><span id="india-coverage">36 regions · 360 curated destinations</span></div>
+          <div class="india-browser-controls">
+            <div><label for="region-browser">State / Union Territory</label><select id="region-browser"></select></div>
+            <div><label for="destination-browser">Tourism destination</label><select id="destination-browser"></select></div>
+          </div>
+          <p class="diet-note">Diet labels follow the ingredients in each recipe. Restaurant recipes can vary; check ingredient labels and cross-contact details for allergies or strict dietary needs. Destination lists are curated discovery suggestions, not an official ranking.</p>
+        </div>
+        <div class="recipe-grid" id="recipe-grid">
+          <div class="empty-card"><span>🥗</span><h3>Your next favourite meal is waiting.</h3><p>Search a city to load recipes from TheMealDB.</p></div>
+        </div>
+        <p class="photo-credit">Recipes are sourced from TheMealDB when available or from MoodBite's curated regional cookbook. Local recipes are home-style starting points; family and restaurant versions vary.</p>
+      </section>
+
+      <section class="meme-section" id="meme-section">
+        <div class="meme-copy">
+          <p class="section-eyebrow">BECAUSE FOOD = FEELINGS</p>
+          <h2>A little laugh<br>with your <em>lunch.</em></h2>
+          <p>Every mood deserves a meme. Make a tiny joke out of the weather and whatever your appetite is feeling.</p>
+          <button class="dark-button" id="new-meme-button" type="button">Make me a meme <span>↗</span></button>
+          <p class="meme-status" id="meme-status" role="status">Your meme will appear on the right.</p>
+        </div>
+        <div class="meme-preview" id="meme-preview">
+          <div class="meme-placeholder"><span>😎</span><strong>Today's mood, in meme form</strong><small>Hit “Make me a meme” to generate one.</small></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a class="brand footer-brand" href="#"><span class="brand-icon">✳</span><span>Mood<span>Bite</span></span></a>
+      <p>Made with a little curiosity and a lot of appetite.</p>
+      <span class="footer-credit">Weather by Open-Meteo · TheMealDB + MoodBite regional cookbook · Memes by MemeGen</span>
+    </footer>
+  </div>
+
+  <dialog class="recipe-dialog" id="recipe-dialog">
+    <button class="dialog-close" id="dialog-close" type="button" aria-label="Close recipe">×</button>
+    <div id="dialog-content"></div>
+  </dialog>
+</body>
+</html>
