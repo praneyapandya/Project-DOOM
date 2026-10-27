@@ -1,0 +1,17 @@
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Editor settings
+.vscode/
+.idea/
+
+# Dependencies/build output (not needed for this static project)
+node_modules/
+dist/
+build/
+
+# Local secrets/configuration
+.env
+.env.*
+!.env.example
